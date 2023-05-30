@@ -5,7 +5,7 @@
 // import { Home } from "react-feather";
 import Sidebar from "./Sidebar";
 // import TodoBody from "./components/TodoBody";
-import Home from "./components/Home/Home";
+// import Home from "./components/Home/Home";
 
 function App() {
   return (

@@ -1,7 +1,28 @@
-#light {
-    background-color: rgb(206, 245, 255);
+.container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 800px !important;
+  /* background-color: aliceblue; */
 }
 
-#dark {
-    background-color: rgb(2, 0, 34);
+.card {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+  box-shadow: 0 3px 7px 0 rgba(0, 0, 0, 0.13), 0 1px 2px 0 rgba(0, 0, 0, 0.11);
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.card_title {
+  display: flex;
+  justify-content: space-between;
+}
+.card_todo_title {
+  display: flex;
+}
+
+.delete {
+  display: flex;
+  justify-content: space-between;
 }

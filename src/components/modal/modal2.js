@@ -1,17 +1,15 @@
 import React, { useState, useEffect } from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import Dropdown from "react-bootstrap/Dropdown";
-import DropdownButton from "react-bootstrap/DropdownButton";
 import "./modal.css";
 // import { Plus } from "react-feather";
 
-function ModalDiv({ text, showModal, setShowModal, refresher, item }) {
+function Modal2({ text, showModal, setShowModal, refresher, item }) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
   const handleAdd = () => {
-    const savedData = JSON.parse(localStorage.getItem("myNotes")) || [];
+    const savedData = JSON.parse(localStorage.getItem("myNotes2")) || [];
     if (!title || !content) {
       return alert("Title and Content is required");
     }
@@ -22,7 +20,7 @@ function ModalDiv({ text, showModal, setShowModal, refresher, item }) {
       date: new Date().toLocaleDateString(),
     };
     savedData.push(newData);
-    localStorage.setItem("myNotes", JSON.stringify(savedData));
+    localStorage.setItem("myNotes2", JSON.stringify(savedData));
     setTitle("");
     setContent("");
     setShowModal(false);
@@ -30,8 +28,18 @@ function ModalDiv({ text, showModal, setShowModal, refresher, item }) {
     refresher();
   };
 
+  const handleCancel = () => {
+    setTitle("");
+    setContent("");
+    setShowModal(false);
+  };
+  useEffect(() => {
+    setTitle(item.title);
+    setContent(item.content);
+  }, []);
+
   const handleEdit = () => {
-    const savedData = JSON.parse(localStorage.getItem("myNotes")) || [];
+    const savedData = JSON.parse(localStorage.getItem("myNotes2")) || [];
     if (!title || !content) {
       return alert("Title and Content is required");
     }
@@ -41,30 +49,18 @@ function ModalDiv({ text, showModal, setShowModal, refresher, item }) {
         itemm.content = content;
       }
     });
-    localStorage.setItem("myNotes", JSON.stringify(savedData));
+    localStorage.setItem("myNotes2", JSON.stringify(savedData));
     setTitle("");
     setContent("");
     setShowModal(false);
     refresher();
   };
 
-  const handleCancel = () => {
-    setTitle("");
-    setContent("");
-    setShowModal(false);
-  };
-
-  useEffect(() => {
-    // console.log(item);
-    setTitle(item.title);
-    setContent(item.content);
-  }, []);
-
   return (
     <>
       <Modal show={showModal} onHide={() => setShowModal(false)} centered>
         <Modal.Header closeButton>
-          <Modal.Title>{text} New Task</Modal.Title>
+          <Modal.Title>{text} New Task </Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <input
@@ -88,7 +84,7 @@ function ModalDiv({ text, showModal, setShowModal, refresher, item }) {
           </Button>
           <Button
             variant="primary"
-            onClick={text === "Edit" ? handleEdit : handleAdd}
+            onClick={text == "Edit" ? handleEdit : handleAdd}
           >
             {/* <Plus /> Add */}
             {text}
@@ -99,4 +95,4 @@ function ModalDiv({ text, showModal, setShowModal, refresher, item }) {
   );
 }
 
-export default ModalDiv;
+export default Modal2;

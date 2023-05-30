@@ -6,12 +6,12 @@ import DropdownButton from "react-bootstrap/DropdownButton";
 import "./modal.css";
 // import { Plus } from "react-feather";
 
-function ModalDiv({ text, showModal, setShowModal, refresher, item }) {
+function Modal1({ text, showModal, setShowModal, refresher, item }) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
   const handleAdd = () => {
-    const savedData = JSON.parse(localStorage.getItem("myNotes")) || [];
+    const savedData = JSON.parse(localStorage.getItem("myNotes1")) || [];
     if (!title || !content) {
       return alert("Title and Content is required");
     }
@@ -22,7 +22,7 @@ function ModalDiv({ text, showModal, setShowModal, refresher, item }) {
       date: new Date().toLocaleDateString(),
     };
     savedData.push(newData);
-    localStorage.setItem("myNotes", JSON.stringify(savedData));
+    localStorage.setItem("myNotes1", JSON.stringify(savedData));
     setTitle("");
     setContent("");
     setShowModal(false);
@@ -31,7 +31,7 @@ function ModalDiv({ text, showModal, setShowModal, refresher, item }) {
   };
 
   const handleEdit = () => {
-    const savedData = JSON.parse(localStorage.getItem("myNotes")) || [];
+    const savedData = JSON.parse(localStorage.getItem("myNotes1")) || [];
     if (!title || !content) {
       return alert("Title and Content is required");
     }
@@ -41,11 +41,15 @@ function ModalDiv({ text, showModal, setShowModal, refresher, item }) {
         itemm.content = content;
       }
     });
-    localStorage.setItem("myNotes", JSON.stringify(savedData));
+    localStorage.setItem("myNotes1", JSON.stringify(savedData));
     setTitle("");
     setContent("");
     setShowModal(false);
     refresher();
+  };
+
+  const handleAdd2 = () => {
+    alert("hi");
   };
 
   const handleCancel = () => {
@@ -55,11 +59,9 @@ function ModalDiv({ text, showModal, setShowModal, refresher, item }) {
   };
 
   useEffect(() => {
-    // console.log(item);
     setTitle(item.title);
     setContent(item.content);
   }, []);
-
   return (
     <>
       <Modal show={showModal} onHide={() => setShowModal(false)} centered>
@@ -90,7 +92,6 @@ function ModalDiv({ text, showModal, setShowModal, refresher, item }) {
             variant="primary"
             onClick={text === "Edit" ? handleEdit : handleAdd}
           >
-            {/* <Plus /> Add */}
             {text}
           </Button>
         </Modal.Footer>
@@ -99,4 +100,4 @@ function ModalDiv({ text, showModal, setShowModal, refresher, item }) {
   );
 }
 
-export default ModalDiv;
+export default Modal1;
